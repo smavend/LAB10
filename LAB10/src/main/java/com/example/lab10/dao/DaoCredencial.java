@@ -3,24 +3,25 @@ import java.sql.*;
 
 import com.example.lab10.bean.Cliente;
 import com.example.lab10.bean.Credencial;
-
+import java.sql.*;
 public class DaoCredencial extends DaoBase{
 
     public Credencial buscarUsuario(String username, String password) {
 
         Credencial credencial = null;
 
-        String sql = "SELECT * FROM employees_credentials WHERE email = ? AND password = ?";
+        String sql = "SELECT * FROM credentials WHERE nro_documento = ? AND hashedPassword = sha2(?,256)";
 
-        try (Connection conn = this.getConection();
+        try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);) {
             pstmt.setString(1, username);
             pstmt.setString(2, password);
 
             try (ResultSet rs = pstmt.executeQuery();) {
                 if(rs.next()){
-                    int employeeId = rs.getInt(1);
-                    employee = this.obtenerEmpleado(employeeId);
+                    credencial = new Credencial();
+                    credencial.setNumDocumento(rs.getString(1));
+                    credencial.setTipoUsuario(rs.getInt(4));
                 }
             }
 
@@ -28,10 +29,10 @@ public class DaoCredencial extends DaoBase{
             ex.printStackTrace();
         }
 
-        return employee;
+        return credencial;
     }
 
-
+/*
     public boolean createCredentialCliente (Credencial credencial) {
 
         String sql = "INSERT INTO `lab9`.`arbitro` (`nombre`, `pais`) VALUES (?, ?);";
@@ -53,7 +54,7 @@ public class DaoCredencial extends DaoBase{
             return false;
         }
         return true;
-    }
+    }*/
 
 
 

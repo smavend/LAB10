@@ -30,7 +30,7 @@ public class ServletLogin extends HttpServlet {
     @Override
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws
     ServletException, IOException {
-
+        RequestDispatcher requestDispatcher;
         DaoCredencial daoCredencial = new DaoCredencial();
 
 
@@ -44,9 +44,20 @@ public class ServletLogin extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("clienteSession", credencial);
 
-            response.sendRedirect(request.getContextPath());
+            switch (credencial.getTipoUsuario()){
+                case 1:
+                    requestDispatcher = request.getRequestDispatcher("partidos/form.jsp");
+                    requestDispatcher.forward(request, response);
+                    break;
+
+                case 2:
+                    requestDispatcher = request.getRequestDispatcher("partidos/form.jsp");
+                    requestDispatcher.forward(request, response);
+                    break;
+            }
+
         }else{
-            response.sendRedirect(request.getContextPath() + "/LoginServlet?error");
+            response.sendRedirect(request.getContextPath() + "/LoginServlet");
         }
 
 
