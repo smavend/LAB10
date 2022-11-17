@@ -19,6 +19,7 @@ public class DaoCredencial extends DaoBase{
 
             try (ResultSet rs = pstmt.executeQuery();) {
                 if(rs.next()){
+                    System.out.println("encontrado");
                     credencial = new Credencial();
                     credencial.setNumDocumento(rs.getString(1));
                     credencial.setTipoUsuario(rs.getInt(4));
@@ -28,7 +29,7 @@ public class DaoCredencial extends DaoBase{
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
+        System.out.println(credencial.getNumDocumento());
         return credencial;
     }
 

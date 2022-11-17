@@ -18,7 +18,7 @@
             <div class="row mb-4">
                 <div class="col"></div>
                 <div class="col-md-6">
-                    <h1 class='mb-3'>Crear un Partido de Clasificatorias</h1>
+                    <h1 class='mb-3'>Crear un un Cliente</h1>
                     <form method="post" action="<%=request.getContextPath()%>/PartidoServlet?action=guardar">
                         <div class="form-group">
                             <label for="jornada">Jornada</label>

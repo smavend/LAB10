@@ -46,12 +46,12 @@ public class ServletLogin extends HttpServlet {
 
             switch (credencial.getTipoUsuario()){
                 case 1:
-                    requestDispatcher = request.getRequestDispatcher("partidos/form.jsp");
+                    requestDispatcher = request.getRequestDispatcher("admin/form.jsp");
                     requestDispatcher.forward(request, response);
                     break;
 
                 case 2:
-                    requestDispatcher = request.getRequestDispatcher("partidos/form.jsp");
+                    requestDispatcher = request.getRequestDispatcher("admin/form.jsp");
                     requestDispatcher.forward(request, response);
                     break;
             }
