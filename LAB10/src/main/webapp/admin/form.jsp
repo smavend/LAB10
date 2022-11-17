@@ -32,6 +32,18 @@
 
                         </div>
                         <div class="form-group">
+                            <label for="tipo_user">Tipo de Usuario</label>
+                            <select name="tipo_user" id ="tipo_user" class="form-control">
+
+                                <option value="1">1
+                                </option>
+                                <option value="2">2
+                                </option>
+                            </select>
+
+
+                        </div>
+                        <div class="form-group">
                             <label for="password">Contraseña</label>
                             <input class="form-control datetimepicker" id="password" name="password"/>
                         </div>
