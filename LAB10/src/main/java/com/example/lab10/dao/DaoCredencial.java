@@ -6,30 +6,31 @@ import com.example.lab10.bean.Credencial;
 
 public class DaoCredencial extends DaoBase{
 
-    public Credencial buscarUsuario(String user, String passw ){
+    public Credencial buscarUsuario(String username, String password) {
+
         Credencial credencial = null;
-        String sql = "SELECT * FROM credentials WHERE nro_documento = ? and password = ? ";
 
-        try(Connection conn = this.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        String sql = "SELECT * FROM employees_credentials WHERE email = ? AND password = ?";
 
-            pstmt.setString(1, user);
-            pstmt.setString(2, passw);
+        try (Connection conn = this.getConection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
 
-
-            try (ResultSet rs = pstmt.executeQuery()){
-                if (rs.next()){
-                    credencial.setNumDocumento(rs.getString(1));
-                    credencial.setTipoUsuario(rs.getInt(4));
-
+            try (ResultSet rs = pstmt.executeQuery();) {
+                if(rs.next()){
+                    int employeeId = rs.getInt(1);
+                    employee = this.obtenerEmpleado(employeeId);
                 }
             }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        catch (SQLException e){
-            throw new RuntimeException();
-        }
-        return credencial;
+
+        return employee;
     }
+
 
     public boolean createCredentialCliente (Credencial credencial) {
 

@@ -1,5 +1,7 @@
 package com.example.lab10.servlet;
 
+import com.example.lab10.bean.Credencial;
+import com.example.lab10.dao.DaoCredencial;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -22,7 +24,6 @@ public class ServletLogin extends HttpServlet {
                 view.forward(request, response);
                 break;
 
-
         }
     }
 
@@ -30,7 +31,26 @@ public class ServletLogin extends HttpServlet {
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws
     ServletException, IOException {
 
-        
+        DaoCredencial daoCredencial = new DaoCredencial();
+
+
+
+        String nro_documento = request.getParameter("nro_documento");
+        String password = request.getParameter("password");
+
+        Credencial credencial = daoCredencial.buscarUsuario(nro_documento, password);
+
+        if(credencial != null){
+            HttpSession session = request.getSession();
+            session.setAttribute("clienteSession", credencial);
+
+            response.sendRedirect(request.getContextPath());
+        }else{
+            response.sendRedirect(request.getContextPath() + "/LoginServlet?error");
+        }
+
+
+
 
     }
 }
