@@ -18,13 +18,8 @@
             <div class="row mb-4">
                 <div class="col"></div>
                 <div class="col-md-6">
-<<<<<<< HEAD
-                    <h1 class='mb-3'>Crear nuevo cliente</h1>
-                    <form method="post" action="<%=request.getContextPath()%>/PartidoServlet?action=guardar">
-=======
                     <h1 class='mb-3'>CREAR NUEVO CLIENTE</h1>
                     <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=guardar">
->>>>>>> 964f996f79fcf798cc88e26a332c5ac7c337567c
                         <div class="form-group">
                             <label for="nro_document">N° de Documento</label>
                             <select name="nro_document" id ="nro_document" class="form-control">

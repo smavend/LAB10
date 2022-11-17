@@ -10,7 +10,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletLogin", urlPatterns = "/Login")
+@WebServlet(name = "ServletLogin", urlPatterns = {"/Login",""})
 public class ServletLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,18 +51,12 @@ public class ServletLogin extends HttpServlet {
             switch (credencial.getTipoUsuario()){
                 case 1:
                     request.setAttribute("listaCliente",daoCliente.listarClientes());
-                    requestDispatcher = request.getRequestDispatcher("admin/form.jsp");
-                    requestDispatcher.forward(request, response);
+                    response.sendRedirect(request.getContextPath()+"/Admin");
                     break;
 
                 case 2:
-<<<<<<< HEAD
-                    request.setAttribute("listaCliente",daoCliente.listarClientes());
-                    requestDispatcher = request.getRequestDispatcher("login/list.jsp");
-=======
                     request.setAttribute("listaContrato",daoContrato.listarContratos(credencial.getNumDocumento()));
-                    requestDispatcher = request.getRequestDispatcher("cliente/list.jsp");
->>>>>>> 964f996f79fcf798cc88e26a332c5ac7c337567c
+                    requestDispatcher = request.getRequestDispatcher("client/list.jsp");
                     requestDispatcher.forward(request, response);
                     break;
             }
