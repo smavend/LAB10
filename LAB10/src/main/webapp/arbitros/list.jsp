@@ -1,7 +1,6 @@
-<%@ page import="com.example.lab9_base.Bean.Arbitro" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:useBean id="listaArbitro" scope="request" type="java.util.ArrayList<com.example.lab9_base.Bean.Arbitro>"/>
 <jsp:useBean id="listaopciones" scope="request" type="java.util.ArrayList<java.lang.String>"/>
 
 <html>
@@ -58,30 +57,13 @@
                 </thead>
 
                 <tbody>
-                <%
-                    for (Arbitro arbitro : listaArbitro) { %>
-                <tr>
+                /*
 
-                    <td><%=arbitro.getIdArbitro()%>
-                    </td>
-                    <td><%=arbitro.getNombre()%>
-                    </td>
-                    <td><%=arbitro.getPais()%>
-                    </td>
-                    <td>
-                        <a
-                        onclick="return confirm('¿Estas seguro(a) que deseas borrar?')"
-                        class="btn btn-danger" href="<%=request.getContextPath()%>/ArbitroServlet?action=borrar&id=<%=arbitro.getIdArbitro()%>"
-                        role="button">Borrar
-                        </a>
 
-                    </td>
+                */
 
-                </tr>
 
-                <%
-                    }
-                %>
+
                 </tbody>
             </table>
         </div>

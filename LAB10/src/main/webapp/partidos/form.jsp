@@ -1,8 +1,8 @@
-<%@ page import="com.example.lab9_base.Bean.Seleccion" %>
-<%@ page import="com.example.lab9_base.Bean.Arbitro" %>
+
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="listaSel" scope="request" type="java.util.ArrayList<com.example.lab9_base.Bean.Seleccion>"/>
-<jsp:useBean id="arbitros" scope="request" type="java.util.ArrayList<com.example.lab9_base.Bean.Arbitro>"/>
+
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -32,25 +32,32 @@
                         <div class="form-group">
                             <label for="local">Selección local</label>
                             <select id="local" name="local" class="form-control">
-                                <% for (Seleccion sel: listaSel) {%>
-                                <option value="<%=sel.getIdSeleccion()%>"><%=sel.getNombre()%></option>
-                                <% } %>
+                                /*
+
+
+                                */
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="visitante">Selección Visitante</label>
                             <select id="visitante" name="visitante" class="form-control">
-                                <% for (Seleccion s: listaSel) {%>
-                                <option value="<%=s.getIdSeleccion()%>"><%=s.getNombre()%></option>
-                                <% } %>
+
+                                /*
+
+
+                                */
+
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="arbitro">Árbitro</label>
                             <select id="arbitro" name="arbitro" class="form-control">
-                                <% for (Arbitro arbitro: arbitros) {%>
-                                <option value="<%=arbitro.getIdArbitro()%>"><%=arbitro.getNombre()%></option>
-                                <% } %>
+
+                                /*
+
+
+                                */
+
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar</button>
