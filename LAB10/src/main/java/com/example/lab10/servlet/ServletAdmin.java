@@ -31,29 +31,18 @@ public class ServletAdmin extends HttpServlet {
     @Override
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
-        String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
-        RequestDispatcher view;
+        String action = request.getParameter("action") == null ? "inicio" : request.getParameter("action");
 
+        RequestDispatcher requestDispatcher;
+        DaoCredencial daoCredencial = new DaoCredencial();
+        DaoCliente daoCliente = new DaoCliente();
         switch (action) {
 
 
-            case "buscar":
-                /*
-                String busqueda = request.getParameter("buscar");
-                String tipo = request.getParameter("tipo");
-
-                if (tipo.equalsIgnoreCase("Nombre")){
-
-                    request.setAttribute("listaArbitro", daoArbitros.busquedaNombre(busqueda));
-
-                }else{
-
-                    request.setAttribute("listaArbitro", daoArbitros.busquedaPais(busqueda));
-                }
-                request.setAttribute("listaopciones",opciones);
-                view = request.getRequestDispatcher("arbitros/list.jsp");
-                view.forward(request, response);
-*/
+            case "inicio":
+                request.setAttribute("listaCliente",daoCliente.listarClientes());
+                requestDispatcher = request.getRequestDispatcher("admin/form.jsp");
+                requestDispatcher.forward(request, response);
 
 
 
@@ -63,13 +52,16 @@ public class ServletAdmin extends HttpServlet {
 
                 String nro_documento = request.getParameter("nro_document");
                 String tipousuario = request.getParameter("tipo_user");
+                int tipoUser = Integer.parseInt(tipousuario);
                 String pass = request.getParameter("password");
-/*
-                Arbitro arbitro1 = new Arbitro();
-                arbitro1.setNombre(nombreArb);
-                arbitro1.setPais(paisArb);
-                daoArbitros.guardar(arbitro1);
-                response.sendRedirect(request.getContextPath() + "/ArbitroServlet");*/
+
+                Credencial credencial = new Credencial();
+                credencial.setNumDocumento(nro_documento);
+                credencial.setTipoUsuario(tipoUser);
+                credencial.setPassword(pass);
+
+                daoCredencial.guardar(credencial);
+                response.sendRedirect(request.getContextPath() + "/ServletAdmin");
                 break;
 
 
