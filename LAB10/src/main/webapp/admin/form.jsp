@@ -1,7 +1,7 @@
-
+<%@ page import="com.example.lab10.bean.Cliente" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<jsp:useBean id="listaCliente" type="java.util.ArrayList<com.example.lab10.bean.Cliente>" scope="request" />
 
 <html>
     <head>
@@ -18,48 +18,26 @@
             <div class="row mb-4">
                 <div class="col"></div>
                 <div class="col-md-6">
-                    <h1 class='mb-3'>Crear un un Cliente</h1>
+                    <h1 class='mb-3'>CREAR NUEVO CLIENTE</h1>
                     <form method="post" action="<%=request.getContextPath()%>/PartidoServlet?action=guardar">
                         <div class="form-group">
-                            <label for="jornada">Jornada</label>
-                            <input type="number" id="jornada" class="form-control" name="jornada" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="fecha">Fecha</label>
-                            <input class="form-control datetimepicker" id="fecha" name="fecha"
-                                   type="date" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="local">Selección local</label>
-                            <select id="local" name="local" class="form-control">
-                                /*
-
-
-                                */
+                            <label for="nro_document">N° de Documento</label>
+                            <select name="nro_document" id ="nro_document" class="form-control">
+                                <% for (Cliente cliente : listaCliente) {%>
+                                <option value="<%=cliente.getNumDocumento()%>"><%=cliente.getNumDocumento()%>
+                                </option>
+                                <%}%>
                             </select>
+
+
                         </div>
                         <div class="form-group">
-                            <label for="visitante">Selección Visitante</label>
-                            <select id="visitante" name="visitante" class="form-control">
-
-                                /*
-
-
-                                */
-
-                            </select>
+                            <label for="password">Contraseña</label>
+                            <input class="form-control datetimepicker" id="password" name="password"/>
                         </div>
-                        <div class="form-group">
-                            <label for="arbitro">Árbitro</label>
-                            <select id="arbitro" name="arbitro" class="form-control">
-
-                                /*
 
 
-                                */
 
-                            </select>
-                        </div>
                         <button type="submit" class="btn btn-primary">Guardar</button>
                         <a href="<%=request.getContextPath()%>/PartidoServlet" class="btn btn-danger">Cancelar</a>
                     </form>

@@ -1,11 +1,10 @@
 package com.example.lab10.dao;
 
 import com.example.lab10.bean.Cliente;
+import com.example.lab10.bean.Contrato;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class DaoCliente extends DaoBase{
     public Cliente buscarCliente(String numDocumento){
@@ -30,5 +29,33 @@ public class DaoCliente extends DaoBase{
             throw new RuntimeException(e);
         }
         return cliente;
+    }
+
+    public ArrayList<Cliente> listarClientes(){
+        ArrayList<Cliente> listarclientes = new ArrayList<>();
+
+        String sql = "SELECT * FROM jm_client_bii ";
+
+
+        try(Connection connection = this.getConnection();
+            Statement stmt= connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)  ){
+
+
+            while(rs.next()){
+                Cliente cliente = new Cliente();
+                cliente.setNumDocumento(rs.getString(1));
+                cliente.setNombreCliente(rs.getString(2));
+                cliente.setEdad(rs.getString(3));
+                cliente.setTipoCliente(rs.getString(4));
+                cliente.setTipoDocumento(rs.getString(5));
+
+                listarclientes.add(cliente);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listarclientes;
     }
 }
