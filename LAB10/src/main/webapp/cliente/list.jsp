@@ -1,7 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:useBean id="listaopciones" scope="request" type="java.util.ArrayList<java.lang.String>"/>
+<jsp:useBean id="listaContrato" scope="request" type="com.example.lab10.bean.Contrato"/>
 
 <html>
     <head>
@@ -23,17 +23,7 @@
                         Árbitro</a>
                 </div>
                 <form method="post" action="<%= request.getContextPath()%>/ArbitroServlet?action=buscar" class="row">
-                    <div class="col-lg-3">
 
-                        <select name="tipo" id="tipo" class="form-control">
-                            <% for ( String opcion : listaopciones) {%>
-                            <option value="<%=opcion%>">
-                                <%=opcion%>
-                            </option>
-                            <% }%>
-                        </select>
-
-                    </div>
                     <div class="col-lg-5">
                         <input type="text" class="form-control" name="buscar">
                     </div>
@@ -49,19 +39,15 @@
             <table class="table table-striped table-hover">
                 <thead>
                 <tr >
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Pais</th>
-                    <th></th>
+                    <th># de Dcoumento</th>
+                    <th>Nombres y Apellidos</th>
+                    <th>Edad</th>
+                    <th>Tipo</th>
+                    <th>Tipo de Documento</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                /*
-
-
-                */
-
 
 
                 </tbody>

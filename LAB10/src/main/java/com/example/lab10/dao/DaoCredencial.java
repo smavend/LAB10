@@ -29,18 +29,15 @@ public class DaoCredencial extends DaoBase{
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        System.out.println(credencial.getNumDocumento());
         return credencial;
     }
 
-    public void guardar (Credencial credencial){
+    public void createCredentialCliente (Credencial credencial){
 
         String sql = "INSERT INTO `bi_corp_business`.`credentials` (`nro_documento`, `password`, `hashedPassword`, `tipoUsuario`) VALUES (?, ?, sha2(?,256), ?)";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
-
 
             pstmt.setString(1, credencial.getNumDocumento());
             pstmt.setString(2, credencial.getPassword());
@@ -52,7 +49,6 @@ public class DaoCredencial extends DaoBase{
         } catch (SQLException throwables){
             throwables.printStackTrace();
         }
-
 
     }
 

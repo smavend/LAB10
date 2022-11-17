@@ -2,6 +2,7 @@ package com.example.lab10.servlet;
 
 import com.example.lab10.bean.Credencial;
 import com.example.lab10.dao.DaoCliente;
+import com.example.lab10.dao.DaoContrato;
 import com.example.lab10.dao.DaoCredencial;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -34,6 +35,8 @@ public class ServletLogin extends HttpServlet {
         RequestDispatcher requestDispatcher;
         DaoCredencial daoCredencial = new DaoCredencial();
         DaoCliente daoCliente = new DaoCliente();
+        DaoContrato daoContrato = new DaoContrato();
+
 
         String nro_documento = request.getParameter("nro_documento");
         String password = request.getParameter("password");
@@ -52,7 +55,8 @@ public class ServletLogin extends HttpServlet {
                     break;
 
                 case 2:
-                    requestDispatcher = request.getRequestDispatcher("admin/form.jsp");
+                    request.setAttribute("listaContrato",daoContrato.listarContratos(credencial.getNumDocumento()));
+                    requestDispatcher = request.getRequestDispatcher("cliente/list.jsp");
                     requestDispatcher.forward(request, response);
                     break;
             }

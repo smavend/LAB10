@@ -39,11 +39,7 @@ public class ServletAdmin extends HttpServlet {
         DaoCliente daoCliente = new DaoCliente();
         switch (action) {
 
-
-
-
             case "guardar":
-
                 String nro_documento = request.getParameter("nro_document");
                 String tipousuario = request.getParameter("tipo_user");
                 int tipoUser = Integer.parseInt(tipousuario);
@@ -54,11 +50,9 @@ public class ServletAdmin extends HttpServlet {
                 credencial.setTipoUsuario(tipoUser);
                 credencial.setPassword(pass);
 
-                daoCredencial.guardar(credencial);
+                daoCredencial.createCredentialCliente(credencial);
                 response.sendRedirect(request.getContextPath() + "/ServletAdmin");
                 break;
-
-
 
         }
 
