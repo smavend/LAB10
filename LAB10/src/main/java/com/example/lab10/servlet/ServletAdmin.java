@@ -13,19 +13,20 @@ import java.io.IOException;
 public class ServletAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-/*
-        String action = request.getParameter("action") == null ?
-                "loginform" : request.getParameter("action");
+        String action = request.getParameter("action") == null ? "inicio" : request.getParameter("action");
 
-        RequestDispatcher view;
-
+        RequestDispatcher requestDispatcher;
+        DaoCredencial daoCredencial = new DaoCredencial();
+        DaoCliente daoCliente = new DaoCliente();
         switch (action) {
-            case "loginform":
-                view = request.getRequestDispatcher("login.jsp");
-                view.forward(request, response);
-                break;
+            case "inicio":
+                request.setAttribute("listaCliente", daoCliente.listarClientes());
+                requestDispatcher = request.getRequestDispatcher("admin/form.jsp");
+                requestDispatcher.forward(request, response);
 
-        }*/
+
+                break;
+        }
     }
 
     @Override
@@ -39,14 +40,7 @@ public class ServletAdmin extends HttpServlet {
         switch (action) {
 
 
-            case "inicio":
-                request.setAttribute("listaCliente",daoCliente.listarClientes());
-                requestDispatcher = request.getRequestDispatcher("admin/form.jsp");
-                requestDispatcher.forward(request, response);
 
-
-
-                break;
 
             case "guardar":
 

@@ -19,7 +19,7 @@
                 <div class="col"></div>
                 <div class="col-md-6">
                     <h1 class='mb-3'>CREAR NUEVO CLIENTE</h1>
-                    <form method="post" action="<%=request.getContextPath()%>/ServletLogin?action=guardar">
+                    <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=guardar">
                         <div class="form-group">
                             <label for="nro_document">N° de Documento</label>
                             <select name="nro_document" id ="nro_document" class="form-control">
@@ -51,7 +51,7 @@
 
 
                         <button type="submit" class="btn btn-primary">Guardar</button>
-                        <a href="<%=request.getContextPath()%>/PartidoServlet" class="btn btn-danger">Cancelar</a>
+                        <a href="<%=request.getContextPath()%>/ServletAdmin" class="btn btn-danger">Cancelar</a>
                     </form>
                 </div>
                 <div class="col"></div>
