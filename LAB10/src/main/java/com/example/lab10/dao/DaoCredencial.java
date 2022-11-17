@@ -33,6 +33,8 @@ public class DaoCredencial extends DaoBase{
         return credencial;
     }
 
+
+
 /*
     public boolean createCredentialCliente (Credencial credencial) {
 

@@ -19,7 +19,7 @@
                 <div class="col"></div>
                 <div class="col-md-6">
                     <h1 class='mb-3'>CREAR NUEVO CLIENTE</h1>
-                    <form method="post" action="<%=request.getContextPath()%>/PartidoServlet?action=guardar">
+                    <form method="post" action="<%=request.getContextPath()%>/ServletLogin?action=guardar">
                         <div class="form-group">
                             <label for="nro_document">N° de Documento</label>
                             <select name="nro_document" id ="nro_document" class="form-control">

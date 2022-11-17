@@ -35,7 +35,6 @@ public class ServletLogin extends HttpServlet {
         DaoCredencial daoCredencial = new DaoCredencial();
         DaoCliente daoCliente = new DaoCliente();
 
-
         String nro_documento = request.getParameter("nro_documento");
         String password = request.getParameter("password");
 
