@@ -9,7 +9,7 @@
         <title>LAB 9</title>
     </head>
     <body>
-        <jsp:include page="../includes/navbar.jsp">
+        <jsp:include page="../includes/navbarAdmin.jsp">
             <jsp:param name="currentPage" value="arb"/>
         </jsp:include>
         <div class='container'>

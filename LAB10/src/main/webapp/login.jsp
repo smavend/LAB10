@@ -18,23 +18,28 @@
     <body>
         <div class="vh-100 d-flex justify-content-center align-items-center">
             <div class="col-md-4 p-5 shadow-sm border rounded-5 border-primary">
-                <h2 class="text-center mb-4 text-primary">Login Form</h2>
-                <form method="POST" action="<%=request.getContextPath()%>/ServletLogin" >
+                <h2 class="text-center mb-4 text-primary">Inicio de Sesión</h2>
+                <form method="POST" action="<%=request.getContextPath()%>/Login" >
                     <div class="mb-3">
                         <label for="nro_documento" class="form-label">Numero de Documento</label>
-                        <input type="number" class="form-control border border-primary" id="nro_documento" aria-describedby="emailHelp" name ="nro_documento">
+                        <input type="number" class="form-control border border-primary" id="nro_documento" aria-describedby="emailHelp" name ="nro_documento" required>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control border border-primary" id="password" name="password">
+                        <input type="password" class="form-control border border-primary" id="password" name="password" required>
+                        <%if(session.getAttribute("error")!=null){%>
+                        <b class="text-danger small">Datos erróneos</b>
+                        <% session.removeAttribute("error");
+                        }%>
                     </div>
 
                     <div class="d-grid">
-                        <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+                        <button class="btn btn-primary" type="submit">Ingresar</button>
                     </div>
                 </form>
 
             </div>
+
         </div>
     </body>
 

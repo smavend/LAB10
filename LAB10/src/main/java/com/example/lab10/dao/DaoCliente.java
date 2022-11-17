@@ -30,6 +30,22 @@ public class DaoCliente extends DaoBase{
         }
         return cliente;
     }
+    public boolean clientIsInCredentials(String nroDoc){
+        boolean valid = false;
+        String sql = "SELECT * FROM bi_corp_business.credentials where nro_documento=?";
+        try(Connection connection = this.getConnection();
+        PreparedStatement pstmt = connection.prepareStatement(sql)){
+            pstmt.setString(1, nroDoc);
+            try (ResultSet rs = pstmt.executeQuery()){
+                if(rs.next()){
+                    valid = true;
+                }
+            }
+        } catch (SQLException e) {
+            return false;
+        }
+        return valid;
+    }
 
     public ArrayList<Cliente> listarClientes(){
         ArrayList<Cliente> listarclientes = new ArrayList<>();
@@ -39,18 +55,20 @@ public class DaoCliente extends DaoBase{
 
         try(Connection connection = this.getConnection();
             Statement stmt= connection.createStatement();
-            ResultSet rs = stmt.executeQuery(sql)  ){
+            ResultSet rs = stmt.executeQuery(sql)){
 
 
             while(rs.next()){
-                Cliente cliente = new Cliente();
-                cliente.setNumDocumento(rs.getString(1));
-                cliente.setNombreCliente(rs.getString(2));
-                cliente.setEdad(rs.getString(3));
-                cliente.setTipoCliente(rs.getString(4));
-                cliente.setTipoDocumento(rs.getString(5));
+                if(!this.clientIsInCredentials(rs.getString(1))){
+                    Cliente cliente = new Cliente();
+                    cliente.setNumDocumento(rs.getString(1));
+                    cliente.setNombreCliente(rs.getString(2));
+                    cliente.setEdad(rs.getString(3));
+                    cliente.setTipoCliente(rs.getString(4));
+                    cliente.setTipoDocumento(rs.getString(5));
 
-                listarclientes.add(cliente);
+                    listarclientes.add(cliente);
+                }
             }
 
         } catch (SQLException e) {

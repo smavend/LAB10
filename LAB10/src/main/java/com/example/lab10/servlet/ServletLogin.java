@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletLogin", urlPatterns = {"/ServletLogin","/"})
+@WebServlet(name = "ServletLogin", urlPatterns = "/Login")
 public class ServletLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,6 +35,7 @@ public class ServletLogin extends HttpServlet {
         DaoCredencial daoCredencial = new DaoCredencial();
         DaoCliente daoCliente = new DaoCliente();
 
+        HttpSession session;
 
         String nro_documento = request.getParameter("nro_documento");
         String password = request.getParameter("password");
@@ -42,7 +43,7 @@ public class ServletLogin extends HttpServlet {
         Credencial credencial = daoCredencial.buscarUsuario(nro_documento, password);
 
         if(credencial != null){
-            HttpSession session = request.getSession();
+            session = request.getSession();
             session.setAttribute("clienteSession", credencial);
 
             switch (credencial.getTipoUsuario()){
@@ -53,17 +54,15 @@ public class ServletLogin extends HttpServlet {
                     break;
 
                 case 2:
-                    requestDispatcher = request.getRequestDispatcher("admin/form.jsp");
+                    request.setAttribute("listaCliente",daoCliente.listarClientes());
+                    requestDispatcher = request.getRequestDispatcher("login/list.jsp");
                     requestDispatcher.forward(request, response);
                     break;
             }
-
         }else{
-            response.sendRedirect(request.getContextPath() + "/LoginServlet");
+            session = request.getSession();
+            session.setAttribute("error", "error");
+            response.sendRedirect(request.getContextPath()+"/Login");
         }
-
-
-
-
     }
 }

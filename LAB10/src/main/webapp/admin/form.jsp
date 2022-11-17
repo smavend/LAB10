@@ -10,7 +10,7 @@
         <title>LAB 9</title>
     </head>
     <body>
-        <jsp:include page="../includes/navbar.jsp">
+        <jsp:include page="../includes/navbarAdmin.jsp">
             <jsp:param name="currentPage" value="par"/>
         </jsp:include>
         <div class='container'>
@@ -18,7 +18,7 @@
             <div class="row mb-4">
                 <div class="col"></div>
                 <div class="col-md-6">
-                    <h1 class='mb-3'>CREAR NUEVO CLIENTE</h1>
+                    <h1 class='mb-3'>Crear nuevo cliente</h1>
                     <form method="post" action="<%=request.getContextPath()%>/PartidoServlet?action=guardar">
                         <div class="form-group">
                             <label for="nro_document">N° de Documento</label>

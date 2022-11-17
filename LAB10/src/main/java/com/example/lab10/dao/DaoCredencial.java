@@ -4,6 +4,8 @@ import java.sql.*;
 import com.example.lab10.bean.Cliente;
 import com.example.lab10.bean.Credencial;
 import java.sql.*;
+import java.util.ArrayList;
+
 public class DaoCredencial extends DaoBase{
 
     public Credencial buscarUsuario(String username, String password) {
@@ -17,19 +19,16 @@ public class DaoCredencial extends DaoBase{
             pstmt.setString(1, username);
             pstmt.setString(2, password);
 
-            try (ResultSet rs = pstmt.executeQuery();) {
+            try (ResultSet rs = pstmt.executeQuery()) {
                 if(rs.next()){
-                    System.out.println("encontrado");
                     credencial = new Credencial();
                     credencial.setNumDocumento(rs.getString(1));
                     credencial.setTipoUsuario(rs.getInt(4));
                 }
             }
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        System.out.println(credencial.getNumDocumento());
         return credencial;
     }
 
