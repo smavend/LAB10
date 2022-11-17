@@ -32,6 +32,26 @@ public class DaoCredencial extends DaoBase{
         return credencial;
     }
 
+    public void createCredentialCliente (Credencial credencial){
+
+        String sql = "INSERT INTO `bi_corp_business`.`credentials` (`nro_documento`, `password`, `hashedPassword`, `tipoUsuario`) VALUES (?, ?, sha2(?,256), ?)";
+
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, credencial.getNumDocumento());
+            pstmt.setString(2, credencial.getPassword());
+            pstmt.setString(3, credencial.getPassword());
+            pstmt.setInt(4, credencial.getTipoUsuario());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+    }
+
 /*
     public boolean createCredentialCliente (Credencial credencial) {
 

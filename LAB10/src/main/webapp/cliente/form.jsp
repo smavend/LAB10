@@ -1,7 +1,6 @@
-<%@ page import="com.example.lab10.bean.Cliente" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="listaCliente" type="java.util.ArrayList<com.example.lab10.bean.Cliente>" scope="request" />
+<jsp:useBean id="listapaises" scope="request" type="java.util.ArrayList<java.lang.String>"/>
+
 
 <html>
     <head>
@@ -11,52 +10,31 @@
     </head>
     <body>
         <jsp:include page="../includes/navbarAdmin.jsp">
-            <jsp:param name="currentPage" value="par"/>
+            <jsp:param name="currentPage" value="arb"/>
         </jsp:include>
         <div class='container'>
-
             <div class="row mb-4">
                 <div class="col"></div>
                 <div class="col-md-6">
-<<<<<<< HEAD
-                    <h1 class='mb-3'>Crear nuevo cliente</h1>
-                    <form method="post" action="<%=request.getContextPath()%>/PartidoServlet?action=guardar">
-=======
-                    <h1 class='mb-3'>CREAR NUEVO CLIENTE</h1>
-                    <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=guardar">
->>>>>>> 964f996f79fcf798cc88e26a332c5ac7c337567c
+                    <h1 class='mb-3'>Crear un Árbitro</h1>
+                    <form method="POST" action="<%=request.getContextPath()%>/ArbitroServlet?action=guardar">
                         <div class="form-group">
-                            <label for="nro_document">N° de Documento</label>
-                            <select name="nro_document" id ="nro_document" class="form-control">
-                                <% for (Cliente cliente : listaCliente) {%>
-                                <option value="<%=cliente.getNumDocumento()%>"><%=cliente.getNumDocumento()%>
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pais">País</label>
+                            <select name="pais" id="pais" class="form-control">
+                                <% for ( String paisArbitro : listapaises) {%>
+                                <option value="<%=paisArbitro%>">
+                                    <%=paisArbitro%>
                                 </option>
-                                <%}%>
+                                <% }%>
                             </select>
 
-
                         </div>
-                        <div class="form-group">
-                            <label for="tipo_user">Tipo de Usuario</label>
-                            <select name="tipo_user" id ="tipo_user" class="form-control">
-
-                                <option value="1">1
-                                </option>
-                                <option value="2">2
-                                </option>
-                            </select>
-
-
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <input class="form-control datetimepicker" id="password" name="password"/>
-                        </div>
-
-
-
                         <button type="submit" class="btn btn-primary">Guardar</button>
-                        <a href="<%=request.getContextPath()%>/ServletAdmin" class="btn btn-danger">Cancelar</a>
+                        <a href="<%= request.getContextPath()%>/ArbitroServlet" class="btn btn-danger">Cancelar</a>
                     </form>
                 </div>
                 <div class="col"></div>
@@ -64,14 +42,14 @@
             <div style="position: fixed; bottom: 40px; right: 40px;" aria-live="polite" aria-atomic="true">
                 <div class="toast text-black" id=toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
                     <div class="toast-header">
-                        <strong class="mr-auto text-primary">En caso de error</strong>
+                        <strong class="mr-auto text-primary">Recuerda</strong>
                         <small>now</small>
                         <button type="button" class="ml-2 mb-1 close close-white" data-dismiss="toast" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="toast-body">
-                        Revise que el partido no esté registrado e intente nuevamente.
+                        El nombre del árbitro debe ser uno que no esté registrado.
                     </div>
                 </div>
             </div>
@@ -90,5 +68,6 @@
                 $('.toast').toast('show');
             })
         </script>
+
     </body>
 </html>
