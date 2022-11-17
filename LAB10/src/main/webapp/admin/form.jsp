@@ -56,17 +56,17 @@
                 </div>
                 <div class="col"></div>
             </div>
-            <div style="position: fixed; bottom: 40px; right: 40px;" aria-live="polite" aria-atomic="true">
-                <div class="toast text-black" id=toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
+            <div style="position: fixed; top: 70px; right: 40px;" aria-live="polite" aria-atomic="true">
+                <div  class="toast text-black" id=toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
                     <div class="toast-header">
-                        <strong class="mr-auto text-primary">En caso de error</strong>
+                        <strong class="mr-auto text-primary">Ha ocurrido un error</strong>
                         <small>now</small>
                         <button type="button" class="ml-2 mb-1 close close-white" data-dismiss="toast" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="toast-body">
-                        Revise que el partido no esté registrado e intente nuevamente.
+                    <div style="background: #0d6efd" class="toast-body text-white">
+                        Verifique lo ingresado e intente nuevamente.
                     </div>
                 </div>
             </div>
