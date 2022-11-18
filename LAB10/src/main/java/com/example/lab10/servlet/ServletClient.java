@@ -29,6 +29,8 @@ public class ServletClient extends HttpServlet {
                 view = request.getRequestDispatcher("client/contratos.jsp");
                 view.forward(request,response);
                 break;
+            case "loss":
+                
         }
     }
 

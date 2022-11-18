@@ -2,6 +2,7 @@ package com.example.lab10.dao;
 
 import com.example.lab10.bean.Cliente;
 import com.example.lab10.bean.Contrato;
+import com.example.lab10.dto.ExpectedLossMax;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -75,6 +76,31 @@ public class DaoCliente extends DaoBase{
             throw new RuntimeException(e);
         }
         return listarclientes;
+    }
+
+    public ArrayList<ExpectedLossMax> mostrarMaxExpectedLoss (String nroClient){
+        ArrayList<ExpectedLossMax> lista = new ArrayList<>();
+        ExpectedLossMax expectedLossMax = null;
+        String sql = "SELECT g6789_contract, pd_value*lgd_value*(1-recovery_rate) " +
+                "FROM jm_values v " +
+                "inner join jm_cotr_bis ct on (v.jm_cotr_bis_g6789_cod_nup = ct.g6789_contract) " +
+                "inner join jm_client_bii cl on (ct.client_nro_id=cl.g4093_nro_id) " +
+                "where g4093_nro_id = ?";
+        try(Connection connection = this.getConnection();
+            PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1,nroClient);
+            try(ResultSet rs = pstmt.executeQuery()){
+                while (rs.next()){
+                    expectedLossMax = new ExpectedLossMax();
+                    expectedLossMax.setNroContrato(rs.getString(1));
+                    expectedLossMax.setExpectedLoss(rs.getFloat(2));
+                    lista.add(expectedLossMax);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lista;
     }
 
 
