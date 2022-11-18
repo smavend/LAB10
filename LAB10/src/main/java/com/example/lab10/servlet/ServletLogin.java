@@ -16,16 +16,20 @@ public class ServletLogin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String action = request.getParameter("action") == null ?
-                "loginform" : request.getParameter("action");
+                "login" : request.getParameter("action");
 
         RequestDispatcher view;
 
         switch (action) {
-            case "loginform":
+            case "login":
                 view = request.getRequestDispatcher("login.jsp");
                 view.forward(request, response);
                 break;
-
+            case "logout":
+                HttpSession session = request.getSession();
+                session.removeAttribute("doc");
+                session.invalidate();
+                response.sendRedirect(request.getContextPath());
         }
     }
 
@@ -55,6 +59,7 @@ public class ServletLogin extends HttpServlet {
                     break;
 
                 case 2:
+                    session.setAttribute("cliente", daoCliente.buscarCliente(nro_documento));
                     request.setAttribute("listaContrato",daoContrato.listarContratos(credencial.getNumDocumento()));
                     requestDispatcher = request.getRequestDispatcher("client/list.jsp");
                     requestDispatcher.forward(request, response);

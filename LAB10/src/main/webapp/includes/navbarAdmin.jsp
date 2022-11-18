@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item" >
-                    <a class="nav-link" href="<%=request.getContextPath()%>/Login">Bienvenido Admin<%=session.getAttribute("doc")%> (Cerrar sesión)</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/Login?action=logout">Bienvenido Admin<%=session.getAttribute("doc")%> (Cerrar sesión)</a>
                 </li>
             </ul>
         </div>

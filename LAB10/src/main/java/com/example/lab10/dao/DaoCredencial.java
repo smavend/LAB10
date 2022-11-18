@@ -36,7 +36,7 @@ public class DaoCredencial extends DaoBase{
         DaoCliente daoCliente = new DaoCliente();
 
         String sql = "INSERT INTO credentials (nro_documento, password, hashedPassword, tipoUsuario) VALUES (?,?, sha2(?,256), 2)";
-
+        //agregamos password para que el JP pueda ingresar
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
             if(!daoCliente.clientIsInCredentials(nroDocumento) && daoCliente.buscarCliente(nroDocumento)!=null && password!=""){
