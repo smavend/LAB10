@@ -23,7 +23,7 @@
                 </li>
                 <li class="nav-item" >
                     <a class="nav-link <%=currentPage.equals("loss") ? "active" : ""%>"
-                       href="<%=request.getContextPath()%>/ArbitroServlet">Expected Loss máximo</a>
+                       href="<%=request.getContextPath()%>/Client?action=loss">Expected Loss máximo</a>
                 </li>
                 <li class="nav-item" >
                     <a class="nav-link"
