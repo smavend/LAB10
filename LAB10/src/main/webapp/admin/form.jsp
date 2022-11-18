@@ -7,7 +7,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'/>
-        <title>LAB 9</title>
+        <title>Administrador</title>
     </head>
     <body>
         <jsp:include page="../includes/navbarAdmin.jsp">

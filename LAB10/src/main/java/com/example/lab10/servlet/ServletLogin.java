@@ -61,8 +61,7 @@ public class ServletLogin extends HttpServlet {
                 case 2:
                     session.setAttribute("cliente", daoCliente.buscarCliente(nro_documento));
                     request.setAttribute("listaContrato",daoContrato.listarContratos(credencial.getNumDocumento()));
-                    requestDispatcher = request.getRequestDispatcher("client/list.jsp");
-                    requestDispatcher.forward(request, response);
+                    response.sendRedirect(request.getContextPath()+"/Client");
                     break;
             }
         }else{
