@@ -37,7 +37,7 @@ public class ServletLogin extends HttpServlet {
         DaoCliente daoCliente = new DaoCliente();
         DaoContrato daoContrato = new DaoContrato();
 
-        HttpSession session;
+        HttpSession session = request.getSession();
 
         String nro_documento = request.getParameter("nro_documento");
         String password = request.getParameter("password");
@@ -45,12 +45,12 @@ public class ServletLogin extends HttpServlet {
         Credencial credencial = daoCredencial.buscarUsuario(nro_documento, password);
 
         if(credencial != null){
-            session = request.getSession();
             session.setAttribute("clienteSession", credencial);
 
             switch (credencial.getTipoUsuario()){
                 case 1:
                     request.setAttribute("listaCliente",daoCliente.listarClientes());
+                    session.setAttribute("doc", nro_documento);
                     response.sendRedirect(request.getContextPath()+"/Admin");
                     break;
 
@@ -61,7 +61,6 @@ public class ServletLogin extends HttpServlet {
                     break;
             }
         }else{
-            session = request.getSession();
             session.setAttribute("error", "error");
             response.sendRedirect(request.getContextPath()+"/Login");
         }
