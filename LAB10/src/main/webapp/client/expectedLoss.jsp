@@ -1,5 +1,4 @@
 <%@ page import="java.sql.Connection" %>
-<%@ page import="com.example.lab10.bean.Contrato" %>
 <%@ page import="com.example.lab10.dto.ExpectedLossMax" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -13,7 +12,7 @@
     </head>
     <body>
         <jsp:include page="../includes/navbarClient.jsp">
-            <jsp:param name="currentPage" value="cont"/>
+            <jsp:param name="currentPage" value="loss"/>
         </jsp:include>
         <div class='container'>
             <div class="row mb-5 mt-4">
