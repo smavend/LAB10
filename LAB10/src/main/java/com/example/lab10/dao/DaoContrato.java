@@ -2,6 +2,7 @@ package com.example.lab10.dao;
 
 import com.example.lab10.bean.Cliente;
 import com.example.lab10.bean.Contrato;
+import com.example.lab10.dto.CantContratos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +22,40 @@ public class DaoContrato extends DaoBase{
             try(ResultSet rs = pstmt.executeQuery()){
                 while(rs.next()){
                     contrato = new Contrato();
+                    contrato.setNroContrato(rs.getString(1));
+                    Cliente cliente = daoCliente.buscarCliente(rs.getString(2));
+                    contrato.setCliente(cliente);
+                    contrato.setDivisa(rs.getString(3));
+                    int estado = rs.getInt(4);
+                    contrato.setEstado(estado==0?"Normal":(estado==1)?"Cura":"Mora");
+                    contrato.setMesesEnEstado(rs.getInt(5));
+                    lista.add(contrato);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lista;
+    }
+
+    public ArrayList<CantContratos> lisarContradoEstado(String idCliente){
+        ArrayList<CantContratos> lista = new ArrayList<>();
+        CantContratos cantContratos = null;
+        DaoCliente daoCliente = new DaoCliente();
+        String sql = "select contr.G6789_status, count(contr.g6789_contract) " +
+                "from jm_cotr_bis contr, jm_client_bii cli " +
+                "where contr.client_nro_id = cli.g4093_nro_id and cli.g4093_nro_id = ?";
+
+        try(Connection connection = this.getConnection();
+            PreparedStatement pstmt = connection.prepareStatement(sql)){
+            pstmt.setString(1,idCliente);
+            try(ResultSet rs = pstmt.executeQuery()){
+                while(rs.next()){
+                    cantContratos = new CantContratos();
+
+                    cantContratos.setEstado();
+
+
                     contrato.setNroContrato(rs.getString(1));
                     Cliente cliente = daoCliente.buscarCliente(rs.getString(2));
                     contrato.setCliente(cliente);

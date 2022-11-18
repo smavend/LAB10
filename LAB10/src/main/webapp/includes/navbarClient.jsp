@@ -19,7 +19,7 @@
                 </li>
                 <li class="nav-item" >
                     <a class="nav-link <%=currentPage.equals("contEst") ? "active" : ""%>"
-                       href="<%=request.getContextPath()%>/ArbitroServlet">Contratos por Estado</a>
+                       href="<%=request.getContextPath()%>/Client?action=cantContratos">Contratos por Estado</a>
                 </li>
                 <li class="nav-item" >
                     <a class="nav-link <%=currentPage.equals("loss") ? "active" : ""%>"

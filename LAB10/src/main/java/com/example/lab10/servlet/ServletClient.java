@@ -40,6 +40,14 @@ public class ServletClient extends HttpServlet {
                 view = request.getRequestDispatcher("client/expectedLoss.jsp");
                 view.forward(request,response);
                 break;
+
+            case "cantContratos":
+                session = request.getSession();
+                cliente = (Cliente) session.getAttribute("cliente");
+                request.setAttribute("contratos",daoContrato.lisarContradoEstado(cliente.getNumDocumento()));
+                view = request.getRequestDispatcher("client/cantContratos.jsp");
+                view.forward(request,response);
+                break;
         }
     }
 
