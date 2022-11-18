@@ -2,6 +2,7 @@ package com.example.lab10.dao;
 
 import com.example.lab10.bean.Cliente;
 import com.example.lab10.bean.Contrato;
+import com.example.lab10.dto.CantContratos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,6 +30,34 @@ public class DaoContrato extends DaoBase{
                     contrato.setEstado(estado==0?"Normal":(estado==1)?"Cura":"Mora");
                     contrato.setMesesEnEstado(rs.getInt(5));
                     lista.add(contrato);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lista;
+    }
+
+    public ArrayList<CantContratos> lisarContradoEstado(String idCliente){
+        ArrayList<CantContratos> lista = new ArrayList<>();
+        CantContratos cantContratos = null;
+        DaoCliente daoCliente = new DaoCliente();
+        String sql = "select contr.G6789_status, count(contr.g6789_contract) " +
+                "from jm_cotr_bis contr, jm_client_bii cli " +
+                "where contr.client_nro_id = cli.g4093_nro_id and cli.g4093_nro_id = ?";
+
+        try(Connection connection = this.getConnection();
+            PreparedStatement pstmt = connection.prepareStatement(sql)){
+            pstmt.setString(1,idCliente);
+            try(ResultSet rs = pstmt.executeQuery()){
+                while(rs.next()){
+                    cantContratos = new CantContratos();
+                    int estado = rs.getInt(1);
+                    cantContratos.setEstado(estado==0?"Normal":(estado==1)?"Cura":"Mora");
+                    cantContratos.setCantidadContrato(rs.getInt(2));
+
+
+                    lista.add(cantContratos);
                 }
             }
         } catch (SQLException e) {
