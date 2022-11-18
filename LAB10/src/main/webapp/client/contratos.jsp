@@ -17,13 +17,13 @@
         <div class='container'>
             <div class="row mb-5 mt-4">
                 <div class="col-lg-6">
-                    <h1 class=''>Mis Datos</h1>
+                    <h1 class=''>Mis Contratos</h1>
                 </div>
             </div>
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col"># Contrato</th>
                         <th scope="col">Divisa</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Meses en ese Estado</th>

@@ -27,6 +27,8 @@ public class ServletClient extends HttpServlet {
                 Cliente cliente = (Cliente) session.getAttribute("cliente");
                 request.setAttribute("contratos",daoContrato.listarContratos(cliente.getNumDocumento()));
                 view = request.getRequestDispatcher("client/contratos.jsp");
+                view.forward(request,response);
+                break;
         }
     }
 

@@ -15,7 +15,7 @@
                 </li>
                 <li class="nav-item" >
                     <a class="nav-link <%=currentPage.equals("cont") ? "active" : ""%>"
-                       href="<%=request.getContextPath()%>/ArbitroServlet">Mis contratos</a>
+                       href="<%=request.getContextPath()%>/Client?action=contratos">Mis contratos</a>
                 </li>
                 <li class="nav-item" >
                     <a class="nav-link <%=currentPage.equals("contEst") ? "active" : ""%>"
