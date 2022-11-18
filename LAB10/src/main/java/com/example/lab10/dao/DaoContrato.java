@@ -25,7 +25,8 @@ public class DaoContrato extends DaoBase{
                     Cliente cliente = daoCliente.buscarCliente(rs.getString(2));
                     contrato.setCliente(cliente);
                     contrato.setDivisa(rs.getString(3));
-                    contrato.setEstado(rs.getInt(4));
+                    int estado = rs.getInt(4);
+                    contrato.setEstado(estado==0?"Normal":(estado==1)?"Cura":"Mora");
                     contrato.setMesesEnEstado(rs.getInt(5));
                     lista.add(contrato);
                 }

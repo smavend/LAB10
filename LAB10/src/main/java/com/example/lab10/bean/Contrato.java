@@ -4,7 +4,7 @@ public class Contrato {
     private String nroContrato;
     private Cliente cliente;
     private String divisa;
-    private int estado;
+    private String estado;
     private int mesesEnEstado;
 
     public String getNroContrato() {
@@ -31,11 +31,11 @@ public class Contrato {
         this.divisa = divisa;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

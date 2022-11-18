@@ -60,7 +60,6 @@ public class ServletLogin extends HttpServlet {
 
                 case 2:
                     session.setAttribute("cliente", daoCliente.buscarCliente(nro_documento));
-                    request.setAttribute("listaContrato",daoContrato.listarContratos(credencial.getNumDocumento()));
                     response.sendRedirect(request.getContextPath()+"/Client");
                     break;
             }
