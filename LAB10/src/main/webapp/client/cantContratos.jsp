@@ -13,7 +13,7 @@
 </head>
 <body>
 <jsp:include page="../includes/navbarClient.jsp">
-    <jsp:param name="currentPage" value="cont"/>
+    <jsp:param name="currentPage" value="contEst"/>
 </jsp:include>
 <div class='container'>
     <div class="row mb-5 mt-4">
