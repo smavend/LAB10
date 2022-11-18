@@ -1,9 +1,10 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="com.example.lab10.bean.Contrato" %>
+<%@ page import="com.example.lab10.dto.CantContratos" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:useBean id="cliente" scope="session" type="com.example.lab10.bean.Cliente" class="com.example.lab10.bean.Cliente"/>
-<jsp:useBean id="contratos" scope="request" type="java.util.ArrayList<com.example.lab10.bean.Contrato>"/>
+<jsp:useBean id="contratos" scope="request" type="java.util.ArrayList<com.example.lab10.dto.CantContratos>"/>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,12 +30,12 @@
         </tr>
         </thead>
         <tbody>
-        <%for(Contrato c: contratos){%>
+        <%for(CantContratos c: contratos){%>
         <tr>
-            <th scope="row"><%=c.getNroContrato()%></th>
-            <td><%=c.getDivisa()%></td>
+
+
             <td><%=c.getEstado()%></td>
-            <td><%=c.getMesesEnEstado()%></td>
+            <td><%=c.getCantidadContrato()%></td>
         </tr>
         <%}%>
         </tbody>
