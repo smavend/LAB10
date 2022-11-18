@@ -18,8 +18,8 @@
             <div class="row mb-4">
                 <div class="col"></div>
                 <div class="col-md-6">
-                    <h1 class='mb-3'>CREAR NUEVO CLIENTE</h1>
-                    <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=guardar">
+                    <h1 class='mb-3'>Crear nuevo cliente</h1>
+                    <form method="post" action="<%=request.getContextPath()%>/Admin?action=guardar">
                         <div class="form-group">
                             <label for="nro_document">N° de Documento</label>
                             <select name="nro_document" id ="nro_document" class="form-control">
@@ -28,20 +28,6 @@
                                 </option>
                                 <%}%>
                             </select>
-
-
-                        </div>
-                        <div class="form-group">
-                            <label for="tipo_user">Tipo de Usuario</label>
-                            <select name="tipo_user" id ="tipo_user" class="form-control">
-
-                                <option value="1">1
-                                </option>
-                                <option value="2">2
-                                </option>
-                            </select>
-
-
                         </div>
                         <div class="form-group">
                             <label for="password">Contraseña</label>
@@ -51,25 +37,27 @@
 
 
                         <button type="submit" class="btn btn-primary">Guardar</button>
-                        <a href="<%=request.getContextPath()%>/ServletAdmin" class="btn btn-danger">Cancelar</a>
                     </form>
                 </div>
                 <div class="col"></div>
             </div>
+            <%if(session.getAttribute("msg")!=null){%>
             <div style="position: fixed; top: 70px; right: 40px;" aria-live="polite" aria-atomic="true">
                 <div  class="toast text-black" id=toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
                     <div class="toast-header">
-                        <strong class="mr-auto text-primary">Ha ocurrido un error</strong>
-                        <small>now</small>
+                        <strong class="mr-auto text-primary">Mensaje</strong>
+                        <small>ahora</small>
                         <button type="button" class="ml-2 mb-1 close close-white" data-dismiss="toast" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div style="background: #0d6efd" class="toast-body text-white">
-                        Verifique lo ingresado e intente nuevamente.
+                        <%=session.getAttribute("msg")%>
                     </div>
                 </div>
             </div>
+            <%session.removeAttribute("msg");
+            }%>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

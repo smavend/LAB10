@@ -32,50 +32,29 @@ public class DaoCredencial extends DaoBase{
         return credencial;
     }
 
-    public void createCredentialCliente (Credencial credencial){
+    public boolean createCredentialCliente (String nroDocumento, String password){
+        DaoCliente daoCliente = new DaoCliente();
 
-        String sql = "INSERT INTO `bi_corp_business`.`credentials` (`nro_documento`, `password`, `hashedPassword`, `tipoUsuario`) VALUES (?, ?, sha2(?,256), ?)";
+        String sql = "INSERT INTO credentials (nro_documento, password, hashedPassword, tipoUsuario) VALUES (?,?, sha2(?,256), 2)";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            if(!daoCliente.clientIsInCredentials(nroDocumento) && daoCliente.buscarCliente(nroDocumento)!=null){
+                pstmt.setString(1, nroDocumento);
+                pstmt.setString(2, password);
+                pstmt.setString(3, password);
 
-            pstmt.setString(1, credencial.getNumDocumento());
-            pstmt.setString(2, credencial.getPassword());
-            pstmt.setString(3, credencial.getPassword());
-            pstmt.setInt(4, credencial.getTipoUsuario());
-
-            pstmt.executeUpdate();
-
-        } catch (SQLException throwables){
-            throwables.printStackTrace();
-        }
-
-    }
-
-/*
-    public boolean createCredentialCliente (Credencial credencial) {
-
-        String sql = "INSERT INTO `lab9`.`arbitro` (`nombre`, `pais`) VALUES (?, ?);";
-        DaoArbitros daoArbitros = new DaoArbitros();
-        for (Arbitro a : daoArbitros.listarArbitros()){
-            if(a.getNombre().equalsIgnoreCase(arbitro.getNombre())){
+                pstmt.executeUpdate();
+                return true;
+            }
+            else{
                 return false;
             }
-        }
-        try (Connection connection = this.getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
-            pstmt.setString(1, arbitro.getNombre());
-            pstmt.setString(2, arbitro.getPais());
-
-            pstmt.executeUpdate();
 
         } catch (SQLException throwables){
             return false;
         }
-        return true;
-    }*/
 
-
+    }
 
 }

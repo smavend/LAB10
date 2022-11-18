@@ -34,6 +34,8 @@ public class ServletAdmin extends HttpServlet {
             ServletException, IOException {
         String action = request.getParameter("action") == null ? "inicio" : request.getParameter("action");
 
+        HttpSession session;
+
         RequestDispatcher requestDispatcher;
         DaoCredencial daoCredencial = new DaoCredencial();
         DaoCliente daoCliente = new DaoCliente();
@@ -41,19 +43,16 @@ public class ServletAdmin extends HttpServlet {
 
             case "guardar":
                 String nro_documento = request.getParameter("nro_document");
-                String tipousuario = request.getParameter("tipo_user");
-                int tipoUser = Integer.parseInt(tipousuario);
                 String pass = request.getParameter("password");
-
-                Credencial credencial = new Credencial();
-                credencial.setNumDocumento(nro_documento);
-                credencial.setTipoUsuario(tipoUser);
-                credencial.setPassword(pass);
-
-                daoCredencial.createCredentialCliente(credencial);
-                response.sendRedirect(request.getContextPath() + "/ServletAdmin");
+                if(!daoCredencial.createCredentialCliente(nro_documento, pass)){
+                    session = request.getSession();
+                    session.setAttribute("msg", "No se ha podido crear la credencial");
+                }else{
+                    session = request.getSession();
+                    session.setAttribute("msg", "Se creó el cliente con éxito");
+                }
+                response.sendRedirect(request.getContextPath() + "/Admin");
                 break;
-
         }
 
 
