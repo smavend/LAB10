@@ -9,7 +9,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'/>
-    <title>Cantidad Contratos</title>
+    <title>Número de Contratos</title>
 </head>
 <body>
 <jsp:include page="../includes/navbarClient.jsp">
@@ -18,7 +18,7 @@
 <div class='container'>
     <div class="row mb-5 mt-4">
         <div class="col-lg-6">
-            <h1 class=''>Mis Contratos</h1>
+            <h1 class=''>Contratos según estado</h1>
         </div>
     </div>
     <table class="table">

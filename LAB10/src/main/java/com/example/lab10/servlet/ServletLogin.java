@@ -1,5 +1,6 @@
 package com.example.lab10.servlet;
 
+import com.example.lab10.bean.Cliente;
 import com.example.lab10.bean.Credencial;
 import com.example.lab10.dao.DaoCliente;
 import com.example.lab10.dao.DaoContrato;
@@ -15,18 +16,26 @@ public class ServletLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String action = request.getParameter("action") == null ?
-                "login" : request.getParameter("action");
+        String action = request.getParameter("action") == null ? "login" : request.getParameter("action");
 
         RequestDispatcher view;
+        HttpSession session = request.getSession();
 
         switch (action) {
             case "login":
-                view = request.getRequestDispatcher("login.jsp");
-                view.forward(request, response);
+                if(session.getAttribute("cliente")==null && session.getAttribute("doc")==null){
+                    view = request.getRequestDispatcher("login.jsp");
+                    view.forward(request, response);
+                }
+                else if(session.getAttribute("cliente")!=null){
+                    response.sendRedirect(request.getContextPath()+"/Client");
+                }
+                else{
+                    response.sendRedirect(request.getContextPath()+"/Admin");
+                }
                 break;
             case "logout":
-                HttpSession session = request.getSession();
+                session.removeAttribute("cliente");
                 session.removeAttribute("doc");
                 session.invalidate();
                 response.sendRedirect(request.getContextPath());

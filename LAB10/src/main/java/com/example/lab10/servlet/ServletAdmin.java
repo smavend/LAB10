@@ -18,14 +18,20 @@ public class ServletAdmin extends HttpServlet {
         RequestDispatcher requestDispatcher;
         DaoCredencial daoCredencial = new DaoCredencial();
         DaoCliente daoCliente = new DaoCliente();
-        switch (action) {
-            case "inicio":
-                request.setAttribute("listaCliente", daoCliente.listarClientes());
-                requestDispatcher = request.getRequestDispatcher("admin/form.jsp");
-                requestDispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        if(session.getAttribute("doc")==null){
+            response.sendRedirect(request.getContextPath());
+        }
+        else{
+            switch (action) {
+                case "inicio":
+                    request.setAttribute("listaCliente", daoCliente.listarClientes());
+                    requestDispatcher = request.getRequestDispatcher("admin/form.jsp");
+                    requestDispatcher.forward(request, response);
 
 
-                break;
+                    break;
+            }
         }
     }
 
@@ -34,7 +40,7 @@ public class ServletAdmin extends HttpServlet {
             ServletException, IOException {
         String action = request.getParameter("action") == null ? "guardar" : request.getParameter("action");
 
-        HttpSession session;
+        HttpSession session = request.getSession();
 
         RequestDispatcher requestDispatcher;
         DaoCredencial daoCredencial = new DaoCredencial();
@@ -45,10 +51,8 @@ public class ServletAdmin extends HttpServlet {
                 String nro_documento = request.getParameter("nro_document");
                 String pass = request.getParameter("password");
                 if(!daoCredencial.createCredentialCliente(nro_documento, pass)){
-                    session = request.getSession();
                     session.setAttribute("msg", "No se ha podido crear la credencial");
                 }else{
-                    session = request.getSession();
                     session.setAttribute("msg", "Se creó el cliente con éxito");
                 }
                 response.sendRedirect(request.getContextPath() + "/Admin");

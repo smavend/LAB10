@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'/>
-        <title>Cliente / Máximo Expected Loss</title>
+        <title>Máximo Expected Loss</title>
     </head>
     <body>
         <jsp:include page="../includes/navbarClient.jsp">
@@ -16,7 +16,7 @@
         </jsp:include>
         <div class='container'>
             <div class="row mb-5 mt-4">
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <h1 class=''>Máximo Expected Loss por contrato</h1>
                 </div>
             </div>

@@ -19,35 +19,37 @@ public class ServletClient extends HttpServlet {
         DaoContrato daoContrato = new DaoContrato();
         DaoCliente daoCliente = new DaoCliente();
         action = (action == null)?"inicio": action;
-        HttpSession session;
+        HttpSession session = request.getSession();
         Cliente cliente;
-        switch (action){
-            case "inicio":
-                view = request.getRequestDispatcher("client/datos.jsp");
-                view.forward(request,response);
-                break;
-            case "contratos":
-                session = request.getSession();
-                cliente = (Cliente) session.getAttribute("cliente");
-                request.setAttribute("contratos",daoContrato.listarContratos(cliente.getNumDocumento()));
-                view = request.getRequestDispatcher("client/contratos.jsp");
-                view.forward(request,response);
-                break;
-            case "loss":
-                session = request.getSession();
-                cliente = (Cliente) session.getAttribute("cliente");
-                request.setAttribute("expectedLoss",daoCliente.mostrarMaxExpectedLoss(cliente.getNumDocumento()));
-                view = request.getRequestDispatcher("client/expectedLoss.jsp");
-                view.forward(request,response);
-                break;
+        if(session.getAttribute("cliente")==null){
+            response.sendRedirect(request.getContextPath());
+        }
+        else{
+            switch (action){
+                case "inicio":
+                    view = request.getRequestDispatcher("client/datos.jsp");
+                    view.forward(request,response);
+                    break;
+                case "contratos":
+                    cliente = (Cliente) session.getAttribute("cliente");
+                    request.setAttribute("contratos",daoContrato.listarContratos(cliente.getNumDocumento()));
+                    view = request.getRequestDispatcher("client/contratos.jsp");
+                    view.forward(request,response);
+                    break;
+                case "loss":
+                    cliente = (Cliente) session.getAttribute("cliente");
+                    request.setAttribute("expectedLoss",daoCliente.mostrarMaxExpectedLoss(cliente.getNumDocumento()));
+                    view = request.getRequestDispatcher("client/expectedLoss.jsp");
+                    view.forward(request,response);
+                    break;
 
-            case "cantContratos":
-                session = request.getSession();
-                cliente = (Cliente) session.getAttribute("cliente");
-                request.setAttribute("contratos",daoContrato.lisarContradoEstado(cliente.getNumDocumento()));
-                view = request.getRequestDispatcher("client/cantContratos.jsp");
-                view.forward(request,response);
-                break;
+                case "cantContratos":
+                    cliente = (Cliente) session.getAttribute("cliente");
+                    request.setAttribute("contratos",daoContrato.lisarContradoEstado(cliente.getNumDocumento()));
+                    view = request.getRequestDispatcher("client/cantContratos.jsp");
+                    view.forward(request,response);
+                    break;
+            }
         }
     }
 

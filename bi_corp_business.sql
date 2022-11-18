@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `bi_corp_business` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `bi_corp_business`;
--- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: bi_corp_business
 -- ------------------------------------------------------
--- Server version	8.0.29
+-- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,7 +14,8 @@ USE `bi_corp_business`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
+CREATE DATABASE  IF NOT EXISTS `bi_corp_business` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bi_corp_business`;
 --
 -- Table structure for table `credentials`
 --
@@ -39,7 +38,7 @@ CREATE TABLE `credentials` (
 
 LOCK TABLES `credentials` WRITE;
 /*!40000 ALTER TABLE `credentials` DISABLE KEYS */;
-INSERT INTO `credentials` VALUES ('234567','aeamano','e0281b9dceed1a31230382f596f05d03ba78532713a48412ffb17b381e459b3b',1),('70649549','mionks','c1dae0b5ec199cca1461b76c452cd27ca96ad69b8a874f17a9bbdf4f4db28697',2);
+INSERT INTO `credentials` VALUES ('12383943','unodostres','4ea0041836d6328cf16f38b71f67ebdd077843f075eb5e112818503e065e7619',2),('234567','aeamano','e0281b9dceed1a31230382f596f05d03ba78532713a48412ffb17b381e459b3b',1),('70649549','mionks','c1dae0b5ec199cca1461b76c452cd27ca96ad69b8a874f17a9bbdf4f4db28697',2);
 /*!40000 ALTER TABLE `credentials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-16 22:05:52
+-- Dump completed on 2022-11-17 23:46:58
