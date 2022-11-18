@@ -39,7 +39,7 @@ public class DaoCredencial extends DaoBase{
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            if(!daoCliente.clientIsInCredentials(nroDocumento) && daoCliente.buscarCliente(nroDocumento)!=null){
+            if(!daoCliente.clientIsInCredentials(nroDocumento) && daoCliente.buscarCliente(nroDocumento)!=null && password!=""){
                 pstmt.setString(1, nroDocumento);
                 pstmt.setString(2, password);
                 pstmt.setString(3, password);

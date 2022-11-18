@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Contraseña</label>
-                            <input class="form-control datetimepicker" id="password" name="password"/>
+                            <input class="form-control datetimepicker" id="password" name="password" required>
                         </div>
 
 
