@@ -44,7 +44,8 @@ public class DaoContrato extends DaoBase{
         DaoCliente daoCliente = new DaoCliente();
         String sql = "select contr.G6789_status, count(contr.g6789_contract) " +
                 "from jm_cotr_bis contr, jm_client_bii cli " +
-                "where contr.client_nro_id = cli.g4093_nro_id and cli.g4093_nro_id = ?";
+                "where contr.client_nro_id = cli.g4093_nro_id and cli.g4093_nro_id = ? " +
+                "group by contr.G6789_status";
 
         try(Connection connection = this.getConnection();
             PreparedStatement pstmt = connection.prepareStatement(sql)){
