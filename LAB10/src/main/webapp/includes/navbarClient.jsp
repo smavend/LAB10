@@ -27,7 +27,7 @@
                 </li>
                 <li class="nav-item" >
                     <a class="nav-link"
-                       href="<%=request.getContextPath()%>/Login?action=logout"><%=cliente.getNombreCliente()%> (Cerrar sesión)</a>
+                       href="<%=request.getContextPath()%>/Login2?action=logout"><%=cliente.getNombreCliente()%> (Cerrar sesión)</a>
                 </li>
             </ul>
         </div>

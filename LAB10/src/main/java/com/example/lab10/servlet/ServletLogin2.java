@@ -10,8 +10,8 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletLogin", urlPatterns = {"/Login2"})
-public class ServletLogin extends HttpServlet {
+@WebServlet(name = "ServletLogin2", urlPatterns = {"/Login",""})
+public class ServletLogin2 extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -23,7 +23,7 @@ public class ServletLogin extends HttpServlet {
         switch (action) {
             case "login":
                 if(session.getAttribute("cliente")==null && session.getAttribute("doc")==null){
-                    view = request.getRequestDispatcher("login.jsp");
+                    view = request.getRequestDispatcher("login2.jsp");
                     view.forward(request, response);
                 }
                 else if(session.getAttribute("cliente")!=null){
@@ -43,7 +43,7 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws
-    ServletException, IOException {
+            ServletException, IOException {
         RequestDispatcher requestDispatcher;
         DaoCredencial daoCredencial = new DaoCredencial();
         DaoCliente daoCliente = new DaoCliente();
